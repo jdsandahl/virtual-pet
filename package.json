@@ -8,8 +8,11 @@
   },
   "author": "Justin Sandahl",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+  
+  },
   "devDependencies": {
-    "jest": "^25.1.0"
+    "jest": "^25.1.0",
+    "minimist": "^1.2.5"
   }
 }
