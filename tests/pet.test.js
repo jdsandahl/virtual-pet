@@ -22,6 +22,12 @@ describe("constructor", () => {
 
     expect(pet.hunger).toEqual(0);
   });
+
+  it("has an initial fitness of 10", () => {
+    const pet = new Pet("Fido");
+
+    expect(pet.fitness).toEqual(10);
+  });
 });
 
 describe("growUp", () => {
@@ -37,5 +43,12 @@ describe("growUp", () => {
     pet.growUp();
 
     expect(pet.hunger).toEqual(5);
+  });
+
+  it("decrements fitness property by 3", () => {
+    const pet = new Pet("Fido");
+    pet.growUp();
+
+    expect(pet.fitness).toEqual(7);
   });
 });
