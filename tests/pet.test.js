@@ -16,6 +16,12 @@ describe("constructor", () => {
 
     expect(pet.age).toEqual(0);
   });
+
+  it("has an initial hunger of 0", () => {
+    const pet = new Pet("Fido");
+
+    expect(pet.hunger).toEqual(0);
+  });
 });
 
 describe("growUp", () => {
@@ -24,5 +30,12 @@ describe("growUp", () => {
     pet.growUp();
 
     expect(pet.age).toEqual(1);
+  });
+
+  it("increments hunger property by 5", () => {
+    const pet = new Pet("Fido");
+    pet.growUp();
+
+    expect(pet.hunger).toEqual(5);
   });
 });
