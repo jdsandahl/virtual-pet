@@ -24,7 +24,11 @@ Pet.prototype.walk = function() {
 };
 
 Pet.prototype.feed = function() {
-    this.hunger -= 3;
-}
+    if ((this.hunger - 3) >= MINIMUM_HUNGER) {
+        this.hunger -= 3;
+    } else {
+        this.hunger = MINIMUM_HUNGER;
+    }
+};
 
 module.exports = Pet;

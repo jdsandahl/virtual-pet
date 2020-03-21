@@ -82,4 +82,13 @@ describe('feed', () => {
 
     expect(pet.hunger).toEqual(3);
   });
+
+  it('decrease hunger by 3 to a minimum of 0', () => {
+    const pet = new Pet('Fido');
+
+    pet.hunger = 2;
+    pet.feed();
+
+    expect(pet.hunger).toEqual(0);
+  });
 });  
