@@ -1,18 +1,20 @@
 const MAXIMUM_FITNESS = 10;
 const MINIMUM_HUNGER = 0;
-
+const MAX_CLEANLINESS = 10;
 
 function Pet(name) {
   this.name = name;
   this.age = 0;
   this.hunger = MINIMUM_HUNGER;
   this.fitness = MAXIMUM_FITNESS;
+  this.cleanliness = MAX_CLEANLINESS;
 };
 
 Pet.prototype.growUp = function() {
   this.age += 1;
   this.hunger += 5;
   this.fitness -= 3;
+  this.cleanliness -= 2;
 };
 
 Pet.prototype.walk = function() {
@@ -21,6 +23,8 @@ Pet.prototype.walk = function() {
   } else {
       this.fitness = MAXIMUM_FITNESS;
   }
+  this.cleanliness -= 3;
+
 };
 
 Pet.prototype.feed = function() {
