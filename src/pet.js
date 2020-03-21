@@ -35,4 +35,12 @@ Pet.prototype.feed = function() {
     }
 };
 
+Pet.prototype.washHands = function() {
+    if ((this.cleanliness + 2) <= MAX_CLEANLINESS) {
+        this.cleanliness += 2;
+    } else {
+        this.cleanliness = MAX_CLEANLINESS;
+    }
+}
+
 module.exports = Pet;

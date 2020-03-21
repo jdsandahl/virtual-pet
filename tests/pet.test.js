@@ -123,3 +123,23 @@ describe('feed', () => {
     expect(pet.hunger).toEqual(0);
   });
 });
+
+describe('washHands', () => {
+  it('increase cleanliness by 2', () =>{
+    const pet = new Pet('Fido');
+
+    pet.cleanliness = 7;
+    pet.washHands();
+
+    expect(pet.cleanliness).toEqual(9);
+  });
+
+  it('increase cleanliness by 2 to a max of 10', () =>{
+    const pet = new Pet('Fido');
+
+    pet.cleanliness = 9;
+    pet.washHands();
+
+    expect(pet.cleanliness).toEqual(10);
+  });
+});
