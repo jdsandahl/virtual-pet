@@ -1,6 +1,7 @@
 const MAXIMUM_FITNESS = 10;
 const MINIMUM_HUNGER = 0;
 const MAX_CLEANLINESS = 10;
+const DEFAULT_FEELING = "I feel great!";
 
 function Pet(name) {
   this.name = name;
@@ -8,7 +9,7 @@ function Pet(name) {
   this.hunger = MINIMUM_HUNGER;
   this.fitness = MAXIMUM_FITNESS;
   this.cleanliness = MAX_CLEANLINESS;
-};
+}
 
 Pet.prototype.growUp = function() {
   this.age += 1;
@@ -18,38 +19,56 @@ Pet.prototype.growUp = function() {
 };
 
 Pet.prototype.walk = function() {
-  if ((this.fitness + 4) <= MAXIMUM_FITNESS) {
-      this.fitness += 4;
+  if (this.fitness + 4 <= MAXIMUM_FITNESS) {
+    this.fitness += 4;
   } else {
-      this.fitness = MAXIMUM_FITNESS;
+    this.fitness = MAXIMUM_FITNESS;
   }
   this.cleanliness -= 3;
-
 };
 
 Pet.prototype.feed = function() {
-    if ((this.hunger - 3) >= MINIMUM_HUNGER) {
-        this.hunger -= 3;
-    } else {
-        this.hunger = MINIMUM_HUNGER;
-    }
-    this.cleanliness -= 1;
+  if (this.hunger - 3 >= MINIMUM_HUNGER) {
+    this.hunger -= 3;
+  } else {
+    this.hunger = MINIMUM_HUNGER;
+  }
+  this.cleanliness -= 1;
 };
 
 Pet.prototype.washHands = function() {
-    if ((this.cleanliness + 2) <= MAX_CLEANLINESS) {
-        this.cleanliness += 2;
-    } else {
-        this.cleanliness = MAX_CLEANLINESS;
-    }
+  if (this.cleanliness + 2 <= MAX_CLEANLINESS) {
+    this.cleanliness += 2;
+  } else {
+    this.cleanliness = MAX_CLEANLINESS;
+  }
 };
 
 Pet.prototype.takeBath = function() {
-    if ((this.cleanliness + 4) <= MAX_CLEANLINESS) {
-        this.cleanliness += 4;
-    } else {
-        this.cleanliness = MAX_CLEANLINESS;
-    }
+  if (this.cleanliness + 4 <= MAX_CLEANLINESS) {
+    this.cleanliness += 4;
+  } else {
+    this.cleanliness = MAX_CLEANLINESS;
+  }
+};
+
+Pet.prototype.checkUp = function() {
+  const status = [];
+  
+  if (this.hunger >= 5) {
+    status.push("I am hungry");
+  }
+  if (this.fitness <= 3) {
+    status.push("I need a walk");
+  }
+
+  const message = status.slice(0, status.length - 1).join(", ");
+
+  return status.length > 1
+  ? `${message} AND ${status[status.length - 1]}`
+  : status.length === 1
+  ? `${status}`
+  : 'I feel great!'
 };
 
 module.exports = Pet;

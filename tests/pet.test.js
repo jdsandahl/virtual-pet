@@ -162,7 +162,7 @@ describe('takeBath', () => {
 
     expect(pet.cleanliness).toEqual(8);
   });
-  
+
   it('increase cleanliness by 4, to a max of 10', () => {
     const pet = new Pet('Fido');
 
@@ -170,5 +170,38 @@ describe('takeBath', () => {
     pet.takeBath();
 
     expect(pet.cleanliness).toEqual(10);
+  });
+});
+
+describe('checkUp', () => {
+  it("returns 'I need a walk' when fitness <= 3", () =>{
+    const pet = new Pet('Fido');
+
+    pet.fitness = 3;
+    
+    expect(pet.checkUp()).toBe('I need a walk');
+  });
+
+  it("returns 'I am hungry' when hunger >= 5", () =>{
+    const pet = new Pet('Fido');
+
+    pet.hunger = 5;
+    
+    expect(pet.checkUp()).toBe('I am hungry');
+  });
+
+  it('If both fitness and hunger outside their threshold, returns I am hungry AND I need a walk', () => {
+    const pet = new Pet('Fido');
+
+    pet.fitness = 3;
+    pet.hunger = 5;
+
+    expect(pet.checkUp()).toBe('I am hungry AND I need a walk');
+  });
+
+  it('If all status are within their thresholds, returns I feel great!', () => {
+    const pet = new Pet('Fido');
+
+    expect(pet.checkUp()).toBe('I feel great!');
   });
 });
