@@ -122,6 +122,15 @@ describe('feed', () => {
 
     expect(pet.hunger).toEqual(0);
   });
+
+  it('decreases cleanliness by 1', () => {
+    const pet = new Pet('Fido');
+
+    pet.cleanliness = 8;
+    pet.feed();
+
+    expect(pet.cleanliness).toEqual(7);
+  });
 });
 
 describe('washHands', () => {
@@ -139,6 +148,26 @@ describe('washHands', () => {
 
     pet.cleanliness = 9;
     pet.washHands();
+
+    expect(pet.cleanliness).toEqual(10);
+  });
+});
+
+describe('takeBath', () => {
+  it('increase cleanliness by 4', () => {
+    const pet = new Pet('Fido');
+
+    pet.cleanliness = 4;
+    pet.takeBath();
+
+    expect(pet.cleanliness).toEqual(8);
+  });
+  
+  it('increase cleanliness by 4, to a max of 10', () => {
+    const pet = new Pet('Fido');
+
+    pet.cleanliness = 8;
+    pet.takeBath();
 
     expect(pet.cleanliness).toEqual(10);
   });

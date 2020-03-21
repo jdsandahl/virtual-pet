@@ -33,6 +33,7 @@ Pet.prototype.feed = function() {
     } else {
         this.hunger = MINIMUM_HUNGER;
     }
+    this.cleanliness -= 1;
 };
 
 Pet.prototype.washHands = function() {
@@ -41,6 +42,14 @@ Pet.prototype.washHands = function() {
     } else {
         this.cleanliness = MAX_CLEANLINESS;
     }
-}
+};
+
+Pet.prototype.takeBath = function() {
+    if ((this.cleanliness + 4) <= MAX_CLEANLINESS) {
+        this.cleanliness += 4;
+    } else {
+        this.cleanliness = MAX_CLEANLINESS;
+    }
+};
 
 module.exports = Pet;
