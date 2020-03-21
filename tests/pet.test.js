@@ -199,6 +199,42 @@ describe('checkUp', () => {
     expect(pet.checkUp()).toBe('I am hungry AND I need a walk');
   });
 
+  it(" returns 'I should wash my hands' when cleanliness < 10", () => {
+    const pet = new Pet('Fido');
+
+    pet.cleanliness = 9;
+
+    expect(pet.checkUp()).toBe('I should wash my hands');
+  });
+
+  it("returns 'I need a bath' when cleanliness <= 7",() => {
+    const pet = new Pet('Fido');
+
+    pet.cleanliness = 7;
+
+    expect(pet.checkUp()).toBe('I need a bath');
+  });
+
+  it('When hungry, unfit and slightly unclean returns I am hungry, I need a walk AND I should wash my hands', () => {
+    const pet = new Pet('Fido');
+
+    pet.fitness = 3;
+    pet.hunger = 5;
+    pet.cleanliness = 9;
+
+    expect(pet.checkUp()).toBe('I am hungry, I need a walk AND I should wash my hands');
+  });
+
+  it('When hungry, unfit and dirty returns I am hungry, I need a walk AND I need a bath', () => {
+    const pet = new Pet('Fido');
+
+    pet.fitness = 3;
+    pet.hunger = 5;
+    pet.cleanliness = 7;
+
+    expect(pet.checkUp()).toBe('I am hungry, I need a walk AND I need a bath');
+  });
+
   it('If all status are within their thresholds, returns I feel great!', () => {
     const pet = new Pet('Fido');
 

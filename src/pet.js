@@ -1,6 +1,12 @@
 const MAXIMUM_FITNESS = 10;
+const FITNESS_THRESHOLD = 3;
+
 const MINIMUM_HUNGER = 0;
+const HUNGER_THRESHHOLD = 5;
+
 const MAX_CLEANLINESS = 10;
+const CLEANLINESS_THRESHOLD = 7; 
+
 const DEFAULT_FEELING = "I feel great!";
 
 function Pet(name) {
@@ -54,21 +60,28 @@ Pet.prototype.takeBath = function() {
 
 Pet.prototype.checkUp = function() {
   const status = [];
-  
-  if (this.hunger >= 5) {
+
+  if (this.hunger >= HUNGER_THRESHHOLD) {
     status.push("I am hungry");
   }
-  if (this.fitness <= 3) {
+
+  if (this.fitness <= FITNESS_THRESHOLD) {
     status.push("I need a walk");
+  }
+
+  if (this.cleanliness <= CLEANLINESS_THRESHOLD) {
+    status.push("I need a bath");
+  } else if (this.cleanliness < MAX_CLEANLINESS) {
+    status.push("I should wash my hands");
   }
 
   const message = status.slice(0, status.length - 1).join(", ");
 
   return status.length > 1
-  ? `${message} AND ${status[status.length - 1]}`
-  : status.length === 1
-  ? `${status}`
-  : 'I feel great!'
+    ? `${message} AND ${status[status.length - 1]}`
+    : status.length === 1
+    ? `${status}`
+    : DEFAULT_FEELING;
 };
 
 module.exports = Pet;
