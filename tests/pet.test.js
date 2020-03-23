@@ -11,6 +11,12 @@ describe("constructor", () => {
     expect(pet.name).toEqual("Fido");
   });
 
+  it("sets the name to 'Fido' by default if no name provided", () =>{
+    const pet = new Pet();
+
+    expect(pet.name).toEqual("Fido");
+  });
+
   it("has an initial age of 0", () => {
     const pet = new Pet("Fido");
 
