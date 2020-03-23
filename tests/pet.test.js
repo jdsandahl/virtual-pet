@@ -64,6 +64,14 @@ describe("growUp", () => {
 
     expect(pet.cleanliness).toEqual(8);
   });
+
+  it('throws an error if the pet is not alive', () => {
+    const pet = new Pet('Fido');
+
+    pet.age = 30;
+
+    expect(() => pet.growUp()).toThrow('Your pet is no longer alive :(');
+  });
 });
 
 describe('walk', () => {
@@ -102,6 +110,14 @@ describe('walk', () => {
 
     expect(pet.cleanliness).toEqual(5);
   });
+
+  it('throws an error if the pet is not alive', () => {
+    const pet = new Pet('Fido');
+
+    pet.age = 30;
+
+    expect(() => pet.walk()).toThrow('Your pet is no longer alive :(');
+  });
 });
 
 describe('feed', () => {
@@ -131,6 +147,14 @@ describe('feed', () => {
 
     expect(pet.cleanliness).toEqual(7);
   });
+
+  it('throws an error if the pet is not alive', () => {
+    const pet = new Pet('Fido');
+
+    pet.age = 30;
+
+    expect(() => pet.feed()).toThrow('Your pet is no longer alive :(');
+  });
 });
 
 describe('washHands', () => {
@@ -151,6 +175,14 @@ describe('washHands', () => {
 
     expect(pet.cleanliness).toEqual(10);
   });
+
+  it('throws an error if the pet is not alive', () => {
+    const pet = new Pet('Fido');
+
+    pet.age = 30;
+
+    expect(() => pet.washHands()).toThrow('Your pet is no longer alive :(');
+  });
 });
 
 describe('takeBath', () => {
@@ -170,6 +202,14 @@ describe('takeBath', () => {
     pet.takeBath();
 
     expect(pet.cleanliness).toEqual(10);
+  });
+
+  it('throws an error if the pet is not alive', () => {
+    const pet = new Pet('Fido');
+
+    pet.age = 30;
+
+    expect(() => pet.takeBath()).toThrow('Your pet is no longer alive :(');
   });
 });
 
@@ -239,6 +279,14 @@ describe('checkUp', () => {
     const pet = new Pet('Fido');
 
     expect(pet.checkUp()).toBe('I feel great!');
+  });
+
+  it('throws an error if the pet is not alive', () => {
+    const pet = new Pet('Fido');
+
+    pet.age = 30;
+
+    expect(() => pet.checkUp()).toThrow('Your pet is no longer alive :(');
   });
 });
 

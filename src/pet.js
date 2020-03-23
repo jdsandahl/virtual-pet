@@ -7,6 +7,8 @@ const HUNGER_MSG_THRESHHOLD = 5;
 const MAX_CLEANLINESS = 10;
 const CLEANLINESS_MSG_THRESHOLD = 7;
 
+const DEATH_ERROR_MSG = "Your pet is no longer alive :(";
+
 function Pet(name) {
   this.name = name;
   this.age = 0;
@@ -27,6 +29,10 @@ Pet.prototype = {
 };
 
 Pet.prototype.growUp = function() {
+  if (!this.isAlive) {
+    throw new Error(DEATH_ERROR_MSG);
+  }
+
   this.age += 1;
   this.hunger += 5;
   this.fitness -= 3;
@@ -34,6 +40,10 @@ Pet.prototype.growUp = function() {
 };
 
 Pet.prototype.walk = function() {
+  if (!this.isAlive) {
+    throw new Error(DEATH_ERROR_MSG);
+  }
+
   if (this.fitness + 4 <= MAXIMUM_FITNESS) {
     this.fitness += 4;
   } else {
@@ -43,6 +53,10 @@ Pet.prototype.walk = function() {
 };
 
 Pet.prototype.feed = function() {
+  if (!this.isAlive) {
+    throw new Error(DEATH_ERROR_MSG);
+  }
+
   if (this.hunger - 3 >= MINIMUM_HUNGER) {
     this.hunger -= 3;
   } else {
@@ -52,6 +66,10 @@ Pet.prototype.feed = function() {
 };
 
 Pet.prototype.washHands = function() {
+  if (!this.isAlive) {
+    throw new Error(DEATH_ERROR_MSG);
+  }
+
   if (this.cleanliness + 2 <= MAX_CLEANLINESS) {
     this.cleanliness += 2;
   } else {
@@ -60,6 +78,10 @@ Pet.prototype.washHands = function() {
 };
 
 Pet.prototype.takeBath = function() {
+  if (!this.isAlive) {
+    throw new Error(DEATH_ERROR_MSG);
+  }
+
   if (this.cleanliness + 4 <= MAX_CLEANLINESS) {
     this.cleanliness += 4;
   } else {
@@ -68,6 +90,10 @@ Pet.prototype.takeBath = function() {
 };
 
 Pet.prototype.checkUp = function() {
+  if (!this.isAlive) {
+    throw new Error(DEATH_ERROR_MSG);
+  }
+
   const status = [];
 
   if (this.hunger >= HUNGER_MSG_THRESHHOLD) {
