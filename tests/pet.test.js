@@ -241,3 +241,49 @@ describe('checkUp', () => {
     expect(pet.checkUp()).toBe('I feel great!');
   });
 });
+
+describe('isAlive', () => {
+  it('returns false if fitness <= 0', () => {
+    const pet = new Pet('Fido');
+
+    pet.fitness = 0;
+
+    expect(pet.isAlive).toEqual(false);
+  });
+
+  it('returns false if hunger >= 10, age >= 30, cleanliness <= 0', () => {
+    const pet = new Pet('Fido');
+
+    pet.hunger = 10;
+
+    expect(pet.isAlive).toEqual(false);
+  });
+
+  it('returns false if age >= 30', () => {
+    const pet = new Pet('Fido');
+
+    pet.age = 31;
+
+    expect(pet.isAlive).toEqual(false);
+  });
+
+  it('returns false if cleanliness <= 0', () => {
+    const pet = new Pet('Fido');
+    
+    pet.cleanliness = -1;
+
+    expect(pet.isAlive).toEqual(false);
+  });
+
+  it('returns true if all properties are below/above their respective thresholds', () => {
+    const pet = new Pet('Fido');
+
+    pet.fitness = 5;
+    pet.hunger = 5;
+    pet.age = 5;
+    pet.cleanliness = 5;
+
+    expect(pet.isAlive).toEqual(true);
+  });
+});
+
