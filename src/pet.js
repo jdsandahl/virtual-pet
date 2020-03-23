@@ -8,8 +8,10 @@ const MAX_CLEANLINESS = 10;
 const CLEANLINESS_MSG_THRESHOLD = 7;
 
 const DEATH_ERROR_MSG = "Your pet is no longer alive :(";
+const DEFAULT_NAME = "Fido"
 
-function Pet(name) {
+
+function Pet(name = DEFAULT_NAME) {
   this.name = name;
   this.age = 0;
   this.hunger = MINIMUM_HUNGER;
