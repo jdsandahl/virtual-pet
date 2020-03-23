@@ -40,6 +40,12 @@ describe("constructor", () => {
 
     expect(pet.cleanliness).toEqual(10);
   });
+
+  it('has initially an empty array for children', () => {
+    const parent = new Pet("Fido");
+
+    expect(parent.children).toEqual([]);
+  });
 });
 
 describe("growUp", () => {
@@ -341,3 +347,23 @@ describe('isAlive', () => {
   });
 });
 
+describe('adoptChild', () => {
+  it('adopts an already existing pet and adds it a list of children', () => {
+    const parent = new Pet('Dave');
+    const child = new Pet('Amelia');
+
+    parent.adoptChild(child);
+
+    expect(parent.children).toEqual([{"age": 0, "children": [], "cleanliness": 10, "fitness": 10, "hunger": 0, "name": "Amelia"}]);
+  });
+});
+
+describe('haveBaby', () => {
+  it('creates a child, gives it a name and adds it to the list of children', () => {
+    const parent = new Pet('Dave')
+
+    parent.haveBaby('Amelia');
+
+    expect(parent.children[0].name).toEqual('Amelia');
+  });
+});

@@ -17,6 +17,7 @@ class Pet {
     this.hunger = MINIMUM_HUNGER;
     this.fitness = MAXIMUM_FITNESS;
     this.cleanliness = MAX_CLEANLINESS;
+    this.children = [];
   }
 
   get isAlive() {
@@ -117,6 +118,16 @@ class Pet {
       : status.length === 1
       ? `${status}`
       : "I feel great!";
+  }
+
+  adoptChild(child) {
+    this.children.push(child);
+  }
+
+  haveBaby(name = DEFAULT_NAME) {
+    const child = new Pet(name);
+
+    this.children.push(child);
   }
 }
 module.exports = Pet;
