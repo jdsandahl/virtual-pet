@@ -47,43 +47,37 @@ class Pet {
   walk() {
     this.deathCheck;
 
-    if (this.fitness + 4 <= MAXIMUM_FITNESS) {
-      this.fitness += 4;
-    } else {
-      this.fitness = MAXIMUM_FITNESS;
-    }
+    this.fitness = (this.fitness + 4 <= MAXIMUM_FITNESS) 
+    ? this.fitness + 4 
+    : MAXIMUM_FITNESS;
+
     this.cleanliness -= 3;
   }
 
   feed() {
     this.deathCheck;
 
-    if (this.hunger - 3 >= MINIMUM_HUNGER) {
-      this.hunger -= 3;
-    } else {
-      this.hunger = MINIMUM_HUNGER;
-    }
+    this.hunger = (this.hunger - 3 >= MINIMUM_HUNGER)
+    ? this.hunger - 3
+    : MINIMUM_HUNGER;
+
     this.cleanliness -= 1;
   }
 
   washHands() {
     this.deathCheck;
 
-    if (this.cleanliness + 2 <= MAX_CLEANLINESS) {
-      this.cleanliness += 2;
-    } else {
-      this.cleanliness = MAX_CLEANLINESS;
-    }
+    this.cleanliness = (this.cleanliness + 2 <= MAX_CLEANLINESS)
+    ? this.cleanliness + 2
+    : MAX_CLEANLINESS;
   }
 
   takeBath() {
     this.deathCheck;
 
-    if (this.cleanliness + 4 <= MAX_CLEANLINESS) {
-      this.cleanliness += 4;
-    } else {
-      this.cleanliness = MAX_CLEANLINESS;
-    }
+    this.cleanliness = (this.cleanliness + 4 <= MAX_CLEANLINESS)
+    ? this.cleanliness + 4
+    : MAX_CLEANLINESS;
   }
 
   checkUp() {
