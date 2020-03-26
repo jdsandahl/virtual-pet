@@ -32,7 +32,7 @@ class Pet {
   get deathCheck() {
     if (!this.isAlive) {
       throw new Error(DEATH_ERROR_MSG);
-    }
+    } //unable to use short-circuit eval, test causes experimental feature error
   }
 
   growUp() {
