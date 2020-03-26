@@ -85,20 +85,22 @@ class Pet {
 
     const status = [];
 
-    const hungerMsg = 
+    const hungerMsg =
       this.hunger >= HUNGER_MSG_THRESHHOLD && status.push("I am hungry");
-    
+
     const fitnessMsg =
       this.fitness <= FITNESS_MSG_THRESHOLD && status.push("I need a walk");
 
-    const cleanlinessMsg = 
-      (this.cleanliness <= CLEANLINESS_MSG_THRESHOLD && status.push("I need a bath")) 
-        || (this.cleanliness < MAX_CLEANLINESS && status.push("I should wash my hands"));
+    const cleanlinessMsg =
+      (this.cleanliness <= CLEANLINESS_MSG_THRESHOLD &&
+        status.push("I need a bath")) ||
+      (this.cleanliness < MAX_CLEANLINESS &&
+        status.push("I should wash my hands"));
 
-     return this.statusMessage(status);
+    return this.statusMessage(status);
   }
 
-  statusMessage (status){
+  statusMessage(status) {
     const message = status.slice(0, status.length - 1).join(", ");
 
     return status.length > 1
