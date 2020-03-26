@@ -30,7 +30,7 @@ class Pet {
   }
 
   get deathCheck() {
-    if (!this.isAlive){
+    if (!this.isAlive) {
       throw new Error(DEATH_ERROR_MSG);
     }
   }
@@ -47,9 +47,8 @@ class Pet {
   walk() {
     this.deathCheck;
 
-    this.fitness = (this.fitness + 4 <= MAXIMUM_FITNESS) 
-    ? this.fitness + 4 
-    : MAXIMUM_FITNESS;
+    this.fitness =
+      this.fitness + 4 <= MAXIMUM_FITNESS ? this.fitness + 4 : MAXIMUM_FITNESS;
 
     this.cleanliness -= 3;
   }
@@ -57,9 +56,8 @@ class Pet {
   feed() {
     this.deathCheck;
 
-    this.hunger = (this.hunger - 3 >= MINIMUM_HUNGER)
-    ? this.hunger - 3
-    : MINIMUM_HUNGER;
+    this.hunger =
+      this.hunger - 3 >= MINIMUM_HUNGER ? this.hunger - 3 : MINIMUM_HUNGER;
 
     this.cleanliness -= 1;
   }
@@ -67,17 +65,19 @@ class Pet {
   washHands() {
     this.deathCheck;
 
-    this.cleanliness = (this.cleanliness + 2 <= MAX_CLEANLINESS)
-    ? this.cleanliness + 2
-    : MAX_CLEANLINESS;
+    this.cleanliness =
+      this.cleanliness + 2 <= MAX_CLEANLINESS
+        ? this.cleanliness + 2
+        : MAX_CLEANLINESS;
   }
 
   takeBath() {
     this.deathCheck;
 
-    this.cleanliness = (this.cleanliness + 4 <= MAX_CLEANLINESS)
-    ? this.cleanliness + 4
-    : MAX_CLEANLINESS;
+    this.cleanliness =
+      this.cleanliness + 4 <= MAX_CLEANLINESS
+        ? this.cleanliness + 4
+        : MAX_CLEANLINESS;
   }
 
   checkUp() {
@@ -85,19 +85,15 @@ class Pet {
 
     const status = [];
 
-    if (this.hunger >= HUNGER_MSG_THRESHHOLD) {
-      status.push("I am hungry");
-    }
+    const hungerMsg = 
+      this.hunger >= HUNGER_MSG_THRESHHOLD && status.push("I am hungry");
+    
+    const fitnessMsg =
+      this.fitness <= FITNESS_MSG_THRESHOLD && status.push("I need a walk");
 
-    if (this.fitness <= FITNESS_MSG_THRESHOLD) {
-      status.push("I need a walk");
-    }
-
-    if (this.cleanliness <= CLEANLINESS_MSG_THRESHOLD) {
-      status.push("I need a bath");
-    } else if (this.cleanliness < MAX_CLEANLINESS) {
-      status.push("I should wash my hands");
-    }
+    const cleanlinessMsg = 
+      (this.cleanliness <= CLEANLINESS_MSG_THRESHOLD && status.push("I need a bath")) 
+        || (this.cleanliness < MAX_CLEANLINESS && status.push("I should wash my hands"));
 
     const message = status.slice(0, status.length - 1).join(", ");
 
