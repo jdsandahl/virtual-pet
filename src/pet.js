@@ -29,10 +29,14 @@ class Pet {
     );
   }
 
-  growUp() {
-    if (!this.isAlive) {
+  get deathCheck() {
+    if (!this.isAlive){
       throw new Error(DEATH_ERROR_MSG);
     }
+  }
+
+  growUp() {
+    this.deathCheck;
 
     this.age += 1;
     this.hunger += 5;
@@ -41,9 +45,7 @@ class Pet {
   }
 
   walk() {
-    if (!this.isAlive) {
-      throw new Error(DEATH_ERROR_MSG);
-    }
+    this.deathCheck;
 
     if (this.fitness + 4 <= MAXIMUM_FITNESS) {
       this.fitness += 4;
@@ -54,9 +56,7 @@ class Pet {
   }
 
   feed() {
-    if (!this.isAlive) {
-      throw new Error(DEATH_ERROR_MSG);
-    }
+    this.deathCheck;
 
     if (this.hunger - 3 >= MINIMUM_HUNGER) {
       this.hunger -= 3;
@@ -67,9 +67,7 @@ class Pet {
   }
 
   washHands() {
-    if (!this.isAlive) {
-      throw new Error(DEATH_ERROR_MSG);
-    }
+    this.deathCheck;
 
     if (this.cleanliness + 2 <= MAX_CLEANLINESS) {
       this.cleanliness += 2;
@@ -79,9 +77,7 @@ class Pet {
   }
 
   takeBath() {
-    if (!this.isAlive) {
-      throw new Error(DEATH_ERROR_MSG);
-    }
+    this.deathCheck;
 
     if (this.cleanliness + 4 <= MAX_CLEANLINESS) {
       this.cleanliness += 4;
@@ -91,9 +87,7 @@ class Pet {
   }
 
   checkUp() {
-    if (!this.isAlive) {
-      throw new Error(DEATH_ERROR_MSG);
-    }
+    this.deathCheck;
 
     const status = [];
 
