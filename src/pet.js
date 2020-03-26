@@ -95,6 +95,10 @@ class Pet {
       (this.cleanliness <= CLEANLINESS_MSG_THRESHOLD && status.push("I need a bath")) 
         || (this.cleanliness < MAX_CLEANLINESS && status.push("I should wash my hands"));
 
+     return this.statusMessage(status);
+  }
+
+  statusMessage (status){
     const message = status.slice(0, status.length - 1).join(", ");
 
     return status.length > 1
