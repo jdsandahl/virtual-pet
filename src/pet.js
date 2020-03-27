@@ -29,10 +29,14 @@ class Pet {
     );
   }
 
-  growUp() {
+  get deathCheck() {
     if (!this.isAlive) {
       throw new Error(DEATH_ERROR_MSG);
-    }
+    } //unable to use short-circuit eval, test causes experimental feature error
+  }
+
+  growUp() {
+    this.deathCheck;
 
     this.age += 1;
     this.hunger += 5;
@@ -41,76 +45,62 @@ class Pet {
   }
 
   walk() {
-    if (!this.isAlive) {
-      throw new Error(DEATH_ERROR_MSG);
-    }
+    this.deathCheck;
 
-    if (this.fitness + 4 <= MAXIMUM_FITNESS) {
-      this.fitness += 4;
-    } else {
-      this.fitness = MAXIMUM_FITNESS;
-    }
+    this.fitness =
+      this.fitness + 4 <= MAXIMUM_FITNESS ? this.fitness + 4 : MAXIMUM_FITNESS;
+
     this.cleanliness -= 3;
   }
 
   feed() {
-    if (!this.isAlive) {
-      throw new Error(DEATH_ERROR_MSG);
-    }
+    this.deathCheck;
 
-    if (this.hunger - 3 >= MINIMUM_HUNGER) {
-      this.hunger -= 3;
-    } else {
-      this.hunger = MINIMUM_HUNGER;
-    }
+    this.hunger =
+      this.hunger - 3 >= MINIMUM_HUNGER ? this.hunger - 3 : MINIMUM_HUNGER;
+
     this.cleanliness -= 1;
   }
 
   washHands() {
-    if (!this.isAlive) {
-      throw new Error(DEATH_ERROR_MSG);
-    }
+    this.deathCheck;
 
-    if (this.cleanliness + 2 <= MAX_CLEANLINESS) {
-      this.cleanliness += 2;
-    } else {
-      this.cleanliness = MAX_CLEANLINESS;
-    }
+    this.cleanliness =
+      this.cleanliness + 2 <= MAX_CLEANLINESS
+        ? this.cleanliness + 2
+        : MAX_CLEANLINESS;
   }
 
   takeBath() {
-    if (!this.isAlive) {
-      throw new Error(DEATH_ERROR_MSG);
-    }
+    this.deathCheck;
 
-    if (this.cleanliness + 4 <= MAX_CLEANLINESS) {
-      this.cleanliness += 4;
-    } else {
-      this.cleanliness = MAX_CLEANLINESS;
-    }
+    this.cleanliness =
+      this.cleanliness + 4 <= MAX_CLEANLINESS
+        ? this.cleanliness + 4
+        : MAX_CLEANLINESS;
   }
 
   checkUp() {
-    if (!this.isAlive) {
-      throw new Error(DEATH_ERROR_MSG);
-    }
+    this.deathCheck;
 
     const status = [];
 
-    if (this.hunger >= HUNGER_MSG_THRESHHOLD) {
-      status.push("I am hungry");
-    }
+    const hungerMsg =
+      this.hunger >= HUNGER_MSG_THRESHHOLD && status.push("I am hungry");
 
-    if (this.fitness <= FITNESS_MSG_THRESHOLD) {
-      status.push("I need a walk");
-    }
+    const fitnessMsg =
+      this.fitness <= FITNESS_MSG_THRESHOLD && status.push("I need a walk");
 
-    if (this.cleanliness <= CLEANLINESS_MSG_THRESHOLD) {
-      status.push("I need a bath");
-    } else if (this.cleanliness < MAX_CLEANLINESS) {
-      status.push("I should wash my hands");
-    }
+    const cleanlinessMsg =
+      (this.cleanliness <= CLEANLINESS_MSG_THRESHOLD &&
+        status.push("I need a bath")) ||
+      (this.cleanliness < MAX_CLEANLINESS &&
+        status.push("I should wash my hands"));
 
+    return this.statusMessage(status);
+  }
+
+  statusMessage(status) {
     const message = status.slice(0, status.length - 1).join(", ");
 
     return status.length > 1
